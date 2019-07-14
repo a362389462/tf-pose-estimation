@@ -107,9 +107,9 @@ if __name__ == '__main__':
             # TODO ensure it only does this when someone is hailing a taxi.
             # That is, an arm is above their head.
             
-            Nose = 1
-            Rightside = 1
-            Leftside = 1
+            Nose = 5
+            Rightside = 8
+            Leftside = 9
 
             for k,v in human.body_parts.items():
                 if POSE_COCO_BODY_PARTS[k] == "Nose":
