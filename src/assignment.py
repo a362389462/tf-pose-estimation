@@ -106,10 +106,25 @@ if __name__ == '__main__':
 
             # TODO ensure it only does this when someone is hailing a taxi.
             # That is, an arm is above their head.
-            hail_taxi(image)
+            
+            Nose = 1
+            Rightside = 1
+            Leftside = 1
+
+            for k,v in human.body_parts.items():
+                if POSE_COCO_BODY_PARTS[k] == "Nose":
+                    Nose = v.y
+                elif POSE_COCO_BODY_PARTS[k] == "RElbow" or POSE_COCO_BODY_PARTS[k] == "RWrist":
+                    Rightside = v.y
+                elif POSE_COCO_BODY_PARTS[k] == "LElbow" or POSE_COCO_BODY_PARTS[k] == "LWrist":
+                    Leftside = v.y
+
+            if Leftside < Nose or Rightside < Nose:
+                hail_taxi(image)
 
             # Debugging statement: remove before demonstration.
             # print([(POSE_COCO_BODY_PARTS[k], v.x, v.y) for k,v in human.body_parts.items()])
+
 
         # drawing lines on an image
         image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
